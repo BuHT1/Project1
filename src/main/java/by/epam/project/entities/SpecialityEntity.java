@@ -29,14 +29,14 @@ public class SpecialityEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "faculty_id")
     private FacultyEntity faculty;
 
     @OneToMany(mappedBy = "speciality", fetch = FetchType.LAZY)
     private Collection<SpecialityOtdelenieEntity> tenants;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "speciality_otdelenie",
             joinColumns = @JoinColumn(name = "speciality_id"),
             inverseJoinColumns = @JoinColumn(name = "otdelenie_id")

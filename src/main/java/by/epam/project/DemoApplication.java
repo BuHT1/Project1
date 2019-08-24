@@ -14,6 +14,8 @@ import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
 
+
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
@@ -68,7 +70,13 @@ public class DemoApplication {
     @Bean(name = "transactionManager")
     public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
         HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-
         return transactionManager;
     }
+
+    @Autowired
+    @Bean(name = "entityManagerFactory")
+    public EntityManagerFactory getEntityManagerFactory(SessionFactory sessionFactory) {
+        return sessionFactory;
+        }
+
 }

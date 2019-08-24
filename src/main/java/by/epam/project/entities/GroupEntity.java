@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -32,6 +33,9 @@ public class GroupEntity {
             inverseJoinColumns = @JoinColumn(name = "student_id")
     )
     private Collection<StudentEntity> studentsEntities;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "speciality_otdelenie_id")
+    private SpecialityOtdelenieEntity specialityOtdelenieEntity;
 
     public Long getId() {
         return id;
@@ -55,5 +59,22 @@ public class GroupEntity {
 
     public void setStudentsEntities(Collection<StudentEntity> studentsEntities) {
         this.studentsEntities = studentsEntities;
+    }
+
+    public SpecialityOtdelenieEntity getSpecialityOtdelenieEntity() {
+        return specialityOtdelenieEntity;
+    }
+
+    public void setSpecialityOtdelenieEntity(SpecialityOtdelenieEntity specialityOtdelenieEntity) {
+        this.specialityOtdelenieEntity = specialityOtdelenieEntity;
+    }
+
+    @Override
+    public String toString() {
+        return "GroupEntity{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", specialityOtdelenieEntity=" + specialityOtdelenieEntity +
+                '}';
     }
 }

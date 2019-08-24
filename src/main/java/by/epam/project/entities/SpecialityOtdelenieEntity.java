@@ -8,8 +8,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.UniqueConstraint;
 import javax.persistence.Table;
+import java.util.Collection;
 
 @Entity
 @Table(name = "speciality_otdelenie", uniqueConstraints = @UniqueConstraint(
@@ -21,18 +23,20 @@ import javax.persistence.Table;
 public class SpecialityOtdelenieEntity {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "speciality_id")
     private SpecialityEntity speciality;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "otdelenie_id")
     private OtdelenieEntity otdelenie;
 
+    @OneToMany(mappedBy = "specialityOtdelenieEntity")
+    private Collection<GroupEntity> groupsEntities;
     public Long getId() {
         return id;
     }
@@ -55,5 +59,14 @@ public class SpecialityOtdelenieEntity {
 
     public void setOtdelenie(OtdelenieEntity otdelenie) {
         this.otdelenie = otdelenie;
+    }
+
+    @Override
+    public String toString() {
+        return "SpecialityOtdelenieEntity{" +
+                "id=" + id +
+                ", speciality=" + speciality +
+                ", otdelenie=" + otdelenie +
+                '}';
     }
 }

@@ -29,4 +29,44 @@ public class OtdelenieEntity {
 	
 	@ManyToMany(mappedBy = "otdelenieEntities")
     private Collection<SpecialityEntity> specialityEntities;
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Collection<SpecialityOtdelenieEntity> getAllSpecialityOtdelenie() {
+		return allSpecialityOtdelenie;
+	}
+
+	public void setAllSpecialityOtdelenie(Collection<SpecialityOtdelenieEntity> allSpecialityOtdelenie) {
+		this.allSpecialityOtdelenie = allSpecialityOtdelenie;
+	}
+
+	public Collection<SpecialityEntity> getSpecialityEntities() {
+		return specialityEntities;
+	}
+
+	public void setSpecialityEntities(Collection<SpecialityEntity> specialityEntities) {
+		this.specialityEntities = specialityEntities;
+	}
+
+	@Override
+	public String toString() {
+		return "OtdelenieEntity{" +
+				"id=" + id +
+				", name='" + name + '\'' +
+				'}';
+	}
 }

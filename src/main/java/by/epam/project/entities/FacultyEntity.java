@@ -26,7 +26,7 @@ public class FacultyEntity {
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(optional = false, cascade = CascadeType.ALL)
+    @ManyToOne(optional = false)
     @JoinColumn(name = "university_id")
     private UniversityEntity university;
 
